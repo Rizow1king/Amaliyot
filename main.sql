@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS categories;
 
 CREATE TABLE IF NOT EXISTS categories(
     cat_id SERIAL PRIMARY KEY,
-    cat_name VARCHAR(150) NOT NULL 
+    cat_name VARCHAR(150) NOT NULL UNIQUE 
 );
 
 DROP TABLE IF EXISTS products;
@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS products;
 CREATE TABLE IF NOT EXISTS products(
     pro_name VARCHAR(20) NOT NULL,
     pro_description VARCHAR(100),
-    pro_prise REAL,
-    pro_quantity NUMERIC,
+    pro_prise REAL NOT NULL,
+    pro_quantity NUMERIC DEFAULT 0,
     pro_added DATE DEFAULT CURRENT_DATE,
     category INTEGER REFERENCES categories(cat_id)
 );
